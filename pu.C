@@ -405,7 +405,7 @@ void agregar(){
 		   	if(Error_con_retorno("Escriba una fecha valida") == 0){
 				valido = 0;
 		   		while(getchar() != '\n');
-				campos_registro("Nombre:", "Vencimiento:", "Codigo:");	
+				campos_registro("Nombre:", "Vencimiento:", "Codigo:");
 				gotoxy(23, 8);
 				printf("%s", nombre);
 		   	}
@@ -965,7 +965,7 @@ void menu_actualizar(int n){
 	else if(seleccion == 8){
 		actualizar();
 	}
-	
+
 	agregar_fichero();
 	actualizar();
 
@@ -1225,7 +1225,7 @@ void descripcion_actualizar_icono(int indice){
 	 	if(minlimit(1,32, 52, 70, 65) && mclick()){
 			seleccion = 1;
 			break;
-		
+
 		}
 		if(minlimit(1,225, 175, 375, 225) && mclick()){
 			seleccion = 2;
@@ -1275,7 +1275,7 @@ void descripcion_actualizar(int indice){
 			}
 		}
 	}while(valido == 0);
-	
+
 
 	strcpy(medicamentos[indice].descripcion, descripcion);
 }
@@ -1507,14 +1507,13 @@ void vender(){
 
 void menu_vender(int indice_prod){
 
-	
+
 	char nombre[40], cantidad[40], codigo[40], precio[40];
-	int j;
 	 int seleccion = 0;
 	 mocultar();
 	 setfillstyle(1, WHITE);
 	bar(0, 50, 640, 480);
-	 
+
 	 setcolor(BLACK);
 	 setfillstyle(1, BLACK);
 	 bar(40, 70, 70, 75);
@@ -1540,13 +1539,13 @@ void menu_vender(int indice_prod){
 
 	 sprintf(nombre, "Nombre del producto: %s", medicamentos[indice_prod].nombre);
 	 outtextxy(20, 180, nombre);
-	 
+
 	 sprintf(cantidad, "Cantidad de productos: %d", medicamentos[indice_prod].cantidad);
 	 outtextxy(20, 220, cantidad);
 
 	 sprintf(codigo, "Codigo del producto: %d", medicamentos[indice_prod].codigo);
 	 outtextxy(20, 240, codigo);
-	
+
 	 sprintf(precio, "Precio del producto: $%d", medicamentos[indice_prod].precio);
 	 outtextxy(20, 260, precio);
 	mver();
@@ -1556,19 +1555,19 @@ void menu_vender(int indice_prod){
 		if(kbhit()){
 			getch();
 		}
-		
+
 		if(minlimit(1, 32, 65, 70, 78) && mclick()){
 			seleccion = 1;
 			break;
 
 		}
-		
+
 		if(minlimit(1, 580, 65, 617, 78) && mclick()){
 			seleccion = 2;
 			break;
 		}
 	}
-	 
+
 
 	if(seleccion == 1){
 
@@ -1576,7 +1575,7 @@ void menu_vender(int indice_prod){
 	}else if (seleccion == 2){
 		menu_vender_clientes(indice_prod);
 	}
-	
+
 
 
 }
@@ -1660,7 +1659,6 @@ void menu_informacion_cliente(int indice_prod, int indice_cliente){
 
 	char nombre[40], credito[40], telefono[40], direccion[80],
 	membresia[40], codigo[30];
-	int j;
 	 int seleccion = 0;
 	 mocultar();
 	 setfillstyle(1, WHITE);
@@ -1707,8 +1705,8 @@ void menu_informacion_cliente(int indice_prod, int indice_cliente){
 
 	 sprintf(direccion, "Direccion del cliente: %s", clientes[indice_cliente].direccion);
 	 outtextxy(20, 280, direccion);
-	 
-	
+
+
 	mver();
 	mver();
 	mver();
@@ -1716,13 +1714,13 @@ void menu_informacion_cliente(int indice_prod, int indice_cliente){
 		if(kbhit()){
 			getch();
 		}
-		
+
 		if(minlimit(1, 40, 70, 70, 75) && mclick()){
 			seleccion = 1;
 			break;
 
 		}
-		
+
 		if(minlimit(1, 580, 70, 610, 75) && mclick()){
 			seleccion = 2;
 			break;
@@ -1746,8 +1744,7 @@ void menu_compra_producto(int indice_prod, int indice_cliente){
 	char credito_final_string[50];
 	char cantidad_final_string[50];
 	int cantidad_final, credito_final;
-	int verdad, seleccion, descuento, precio_pagar, precio_membresia;
-	int valido;
+	int verdad, descuento, precio_pagar;
 	do{
 		verdad = 1;
 		cambiar_propiedad_interfaz();
@@ -1760,7 +1757,7 @@ void menu_compra_producto(int indice_prod, int indice_cliente){
 			if(Error_con_retorno("Escribe una cantidad valida") == 0){
 				menu_informacion_cliente(indice_prod, indice_cliente);
 				verdad = 0;
-				
+
 			}
 		}
 		cantidad_comprar_entero = atoi(cantidad_comprar);
@@ -1768,7 +1765,7 @@ void menu_compra_producto(int indice_prod, int indice_cliente){
 			if(Error_con_retorno("La cantidad sobrepasa el inventario") == 0){
 				menu_informacion_cliente(indice_prod, indice_cliente);
 				verdad = 0;
-				
+
 			}
 		}
 
@@ -1834,8 +1831,8 @@ void menu_compra_producto(int indice_prod, int indice_cliente){
 	registro++;
 	agregar_fichero_registro(medicamentos[indice_prod].nombre, clientes[indice_cliente].nombre, credito_final, medicamentos[indice_prod].precio, cantidad_comprar_entero);
 	inventario();
-	
-	
+
+
 }
 
 
@@ -1942,17 +1939,9 @@ void registrar_clientes(){
 	char nombre[MAX];
 	char telefono[MAX];
 	char credito[MAX];
-	char unidad_medida[MAX];
 	char codigo[MAX];
-	int retorno;
-	char precio[MAX];
-	char cantidad[MAX];
 	char direccion[MAX_DESC];
-	char unidad_medida_string[MAX];
 	int valido, resultado = 0;
-	int codigo_entero;
-	int seleccion = 1;
-	int eleccion;
 	mver();
 
 	fflush(stdin);
@@ -2123,7 +2112,7 @@ void registrar_clientes(){
 
 	}while(valido == 0);
 
-	
+
 	clientes[count_c].membresia = 0;
 	strcpy(clientes[count_c].nombre, nombre);
 	strcpy(clientes[count_c].telefono, telefono);
@@ -2545,36 +2534,35 @@ void credito_actualizar_cliente(int indice){
 
 void direccion_actualizar_cliente(int indice){
 
-	char nueva_descripcion[MAX_DESC];
-	char antigua_descripcion[100];
+	char nueva_direccion[MAX_DESC];
+	char antigua_direccion[100];
 	int verdad;
-	int i;
 	mocultar();
 	do{
 		verdad = 1;
 		cambiar_propiedad_interfaz();
 		settextstyle(0,0, 2);
-		sprintf(antigua_descripcion, "Descripcion actual:%s", clientes[indice].descripcion);
-		outtextxy(130, 110, antigua_descripcion);
-		outtextxy(130, 160, "Nueva descripcion");
+		sprintf(antigua_direccion, "direccion actual:%s", clientes[indice].direccion);
+		outtextxy(130, 110, antigua_direccion);
+		outtextxy(130, 160, "Nueva direccion");
 		gotoxy(18, 13);
 		fflush(stdin);
-		fgets(nueva_descripcion, sizeof(nueva_descripcion), stdin);
-		nueva_descripcion[strcspn(nueva_descripcion, "\n")] = '\0';
+		fgets(nueva_direccion, sizeof(nueva_direccion), stdin);
+		nueva_direccion[strcspn(nueva_direccion, "\n")] = '\0';
 		while(kbhit()){
 			getch();
 
 		}
 	}while(verdad == 0);
 
-	strcpy(clientes[indice].descripcion, nueva_descripcion);
+	strcpy(clientes[indice].direccion, nueva_direccion);
 	mver();
 
 }
 
 void membresia_actualizar_cliente(int indice){
 
-	int retorno, eleccion;
+	int retorno;
 
 	cleardevice();
 	mver();
@@ -2933,7 +2921,6 @@ void agregar_fichero_cliente(){
 
 void agregar_fichero_registro(char nombre_cliente[], char nombre_producto[], int credito_final, int precio_producto, int cant_vendida){
 
-	int i;
 	 FILE *file = fopen("C:\\TC20\\archivos\\registro.TXT", "a");
     	if (file == NULL) {
         	printf("Error al abrir el fichero.\n");
@@ -2943,7 +2930,7 @@ void agregar_fichero_registro(char nombre_cliente[], char nombre_producto[], int
 		fprintf(file, "No hay registros");
 
 	}
-	
+
 	fprintf(file,"Nombre del producto: %s  | Precio del producto: %d | Cantidad vendida: %d | Vendido a: %s | Credito final del cliente: %d\n", nombre_cliente, precio_producto, cant_vendida, nombre_producto, credito_final);
         fclose(file);
 
